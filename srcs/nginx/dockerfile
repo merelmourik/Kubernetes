@@ -8,7 +8,8 @@ RUN apk update && apk upgrade && \
 	apk add openssh 
 
 # creating a folder for nginx.pid and for www
-RUN mkdir /var/run/nginx && mkdir -p /www && \
+RUN mkdir /var/run/nginx && mkdir -p /www
+# -p needed?
 
 # adding user www for nginx
 RUN adduser -D -g 'www' www
@@ -18,19 +19,20 @@ RUN chown -R www:www /var/lib/nginx && \
 	chown -R www:www /www
 
 # ssl certifacate for openssl
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '' -keyout /etc/ssl/server.key -out /etc/ssl/server.cert
+# RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '' -keyout /etc/ssl/nginx.key -out /etc/ssl/nginx.cert
 # nodig?
 
 # copying the nginx configuration file and the index page to the container
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY index.html /www/index.html 
+COPY nginx.cert /etc/ssl/nginx.cert
+COPY nginx.key /etc/ssl/nginx.key
+COPY supervisor.conf /etc/ssl/supervisor.conf
 
 # adding a user for the ssh and changing the password everywhere
 run adduser -h / -D merel && \
 	echo "merel:strawberry" | chpasswd
-
-# copy the configuration to the correct dictionary
-COPY sshd_config /etc/ssh/sshd_config
+# whyy?
 
 # copy the startup.sh to the container
 COPY start.sh /start.sh

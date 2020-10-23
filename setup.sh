@@ -14,3 +14,10 @@ kubectl apply -f srcs/metallb/config_metallb.yaml
 
 # connecting to the docker environment that is running in the cluster
 eval $(minikube docker-env)
+
+# building my nginx image
+docker build -t mynginx ./srcs/nginx
+# docker run --name mynginx -p 80:80 -d nginx
+
+# adding the nginx.yaml file to deploy the mynginx container
+kubectl apply -f ./srcs/nginx/nginx.yaml

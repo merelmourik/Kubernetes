@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 1     # default so not necesarry?
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec: 
+      containers:
+        - name : nginx
+          image: nginx:1.14.2
+         # imagePullPolicy: Never
+          ports:
+          - containerPort: 80
+            name: http
+          - containerPort: 443
+            name: https
+          - containerPort: 22
+            name: ssh
+
+---
+apiVersion: v1
+kind: Service 
+metadata:
+  # annotations: # nog aanvullen
+  name: nginx
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP     # nodig?
+    targetPort: 80
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  - name: ssh
+    port: 22
+    targetPort: 22
+  selector:
+    app: nginx
+  type: LoadBalancer
