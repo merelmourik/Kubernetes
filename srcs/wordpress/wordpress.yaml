@@ -50,8 +50,6 @@ spec:
       - name: wordpress
         image: wordpress:4.8-apache
         envFrom:
-      #  - secretRef:
-       #     name: mysql-secret
         - secretRef:
             name: wordpress-secret
         ports:

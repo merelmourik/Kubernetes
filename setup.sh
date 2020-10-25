@@ -5,7 +5,6 @@ minikube delete
 minikube start --driver=virtualbox \
                 --cpus=2 --memory=2048 --disk-size=10g \
                 --addons metallb \
-                --addons metrics-server \
                 --addons dashboard
 
 # enabling MetalLB and kubernetes dashboard
@@ -19,16 +18,18 @@ kubectl apply -f srcs/metallb/config.yaml
 # connecting to the docker environment that is running in the cluster
 eval $(minikube docker-env)
 
-# building my nginx image
-# docker build -t mynginx ./srcs/nginx
+# building my phpmyadmin image
+docker build -t myphpmyadmin ./srcs/phpmyadmin
 
-# adding the nginx.yaml file to deploy the mynginx container
-kubectl apply -f ./srcs/nginx/nginx.yaml
+# adding the phpmyadmin.yaml file to deploy the myphpmyadmin container
+kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
 
 # adding the worpress.yaml file to deploy mywordpress container
-kubectl apply -f ./srcs/wordpress/wordpress.yaml
+# kubectl apply -f ./srcs/wordpress/wordpress.yaml
 
 # adding the mysql.yaml file to deploy mysql container
-kubectl apply -f ./srcs/mysql/mysql.yaml
+# kubectl apply -f ./srcs/mysql/mysql.yaml
 
-kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
+# adding the phpmyadmin.yaml file to deploy phpmyadmin container
+
+# kubectl apply -f ./srcs/nginx/nginx.yaml
