@@ -27,7 +27,7 @@ RUN chown -R www:www /var/lib/nginx && \
 
 # copying the nginx conf file and the php config files to the correct directories
 # and copying the start.sh file
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf etc/nginx/nginx.conf
 COPY confic.inc.php /www/confic.inc.php
 COPY start.sh /start.sh
 
