@@ -35,7 +35,9 @@ WORKDIR /
 
 # copying the configurations and the start script
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY wp-config.php /www/wp-config.php
 COPY start.sh /start.sh
+
 
 # give yourself the execute rights for the start script
 RUN chmod +x /start.sh
