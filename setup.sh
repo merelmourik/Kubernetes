@@ -19,16 +19,16 @@ kubectl apply -f srcs/metallb/config.yaml
 eval $(minikube docker-env)
 
 # building my phpmyadmin image
-docker build -t myphpmyadmin ./srcs/phpmyadmin_test
+docker build -t myphpmyadmin ./srcs/phpmyadmin
 
 # adding the phpmyadmin.yaml file to deploy the myphpmyadmin container
-kubectl apply -f ./srcs/phpmyadmin_test/phpmyadmin.yaml
+kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
 
 # building my wordpress image
-# docker build -t mywordpress ./srcs/wordpress
+docker build -t mywordpress ./srcs/wordpress
 
 # adding the worpress.yaml file to deploy mywordpress container
-# kubectl apply -f ./srcs/wordpress/wordpress.yaml
+kubectl apply -f ./srcs/wordpress/wordpress.yaml
 
 # adding the mysql.yaml file to deploy mysql container
 # kubectl apply -f ./srcs/mysql/mysql.yaml
