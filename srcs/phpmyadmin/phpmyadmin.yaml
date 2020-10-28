@@ -26,12 +26,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: phpmyadmin-service
+  annotations:    # wat doet dit?
+      metallb.universe.tf/allow-shared-ip: shared
 spec:
   type: LoadBalancer
   selector:
-    app: phpmyadmin-deployment
+    app: phpmyadmin
   ports:
-  - name: http
+  - name: http        # kan alleen 'port 5000' ook?
     port: 5000
     protocol: TCP
     targetPort: 5000

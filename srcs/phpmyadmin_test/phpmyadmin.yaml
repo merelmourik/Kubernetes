@@ -1,0 +1,80 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: phpmyadmin
+#   labels:
+#     app: phpmyadmin
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: phpmyadmin
+#   template:
+#     metadata:
+#       labels:
+#         app: phpmyadmin
+#     spec:
+#       containers:
+#       - name: phpmyadmin
+#         image: myphpmyadmin
+#         imagePullPolicy: Never
+#         ports:
+#         - containerPort: 5000
+#           name: http
+          
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   annotations:
+#     metallb.universe.tf/allow-shared-ip: shared
+#   name: phpmyadmin
+# spec:
+#   ports:
+#   - name: http
+#     port: 5000
+#     protocol: TCP
+#     targetPort: 5000
+#   selector:
+#     app: phpmyadmin
+#   type: LoadBalancer
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin-deployment
+  labels:
+    app: phpmyadmin
+spec:
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+        - name: phpmyadmin
+          image: myphpmyadmin
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+              name: http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin-service
+  annotations:    # wat doet dit?
+      metallb.universe.tf/allow-shared-ip: shared
+spec:
+  type: LoadBalancer
+  selector:
+    app: phpmyadmin
+  ports:
+  - name: http        # kan alleen 'port 5000' ook?
+    port: 5000
+    protocol: TCP
+    targetPort: 5000

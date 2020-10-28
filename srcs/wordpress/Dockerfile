@@ -3,32 +3,45 @@ FROM alpine:3.12
 
 # update the packagelist and install necessary packages
 RUN apk update && \
-    apk add lighttpd php7-common php7-iconv php7-json php7-gd php7-curl php7-xml php7-mysqli \
-            php7-imap php7-cgi fcgi php7-pdo php7-pdo_mysql php7-soap php7-xmlrpc php7-posix \
-            php7-mcrypt php7-gettext php7-ldap php7-ctype php7-dom
+	apk add nginx sudo mysql-client jq curl && \
+   	apk add php7 php7-fpm php7-opcache php7-common php7-curl php7-json \
+			php7-mbstring php7-xml php7-zip php7-gd php7-soap php7-tokenizer \
+			php7-dom php7-exif php7-fileinfo php7-mysqli php7-zlib php7-phar
 
-# creating a folder for nginx.pid and for www
-RUN mkdir /var/run/nginx && mkdir -p /www && \
+# creating a folder for nginx.pid, a folder for the user
+RUN mkdir /var/run/nginx && \
+	mkdir -p /www
 
-# adding user www for nginx and wordpress
+# adding user www for nginx 
 RUN adduser -D -g 'www' www
 
-# install mysql
-apk add wget php5-mysql mysql mysql-client php5-zlib
-## installing too much right now
+# changing the user ID for the hierarchies rooted in the files
+RUN chown -R www:www /var/lib/nginx && \
+	chown -R www:www /www
 
+# download the wordpress command line interface, this also provides the terminal
+# with recognizing the 'wp' in the start.sh file
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	chmod +x wp-cli.phar && \
+	mv wp-cli.phar /usr/local/bin/wp
 
-# create a directory named 'webapps'
-mkdir -p /usr/share/webapps/
+# first making sure you are in the correct directory and then 
+# downloading the latest wordpress source files
+WORKDIR	/www
+RUN wp core download
 
-# download the latest Wordpress source files
-cd /usr/share/webapps/ wget http://wordpress.org/latest.tar.gz
+# set the workdir back
+WORKDIR /
 
-# unpack the archive and delete it afterwards
-tar -xzvf latest.tar.gz
-rm latest.tar.gz
+# copying the configurations and the start script
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY start.sh /start.sh
 
-# create a symbolic link to the wordpress folder
-ln -s /usr/share/webapps/wordpress/ /var/www/localhost/htdocs/wordpress
+# give yourself the execute rights for the start script
+RUN chmod +x /start.sh
 
-# configurations and starting 
+# expose the correct port
+EXPOSE 5050
+
+# make sure that the container keeps running
+CMD ./start.sh
