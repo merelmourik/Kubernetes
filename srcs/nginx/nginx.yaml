@@ -1,3 +1,5 @@
+# aanpassen naar -deployment en -service
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,8 +18,8 @@ spec:
     spec: 
       containers:
         - name : nginx
-          image: nginx:1.14.2
-         # imagePullPolicy: Never
+          image: mynginx
+          imagePullPolicy: Never
           ports:
           - containerPort: 80
             name: http

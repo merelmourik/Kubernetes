@@ -36,39 +36,36 @@ spec:
         persistentVolumeClaim:
           claimName: mysql-pv-claim
 
-
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: mysql-service
   labels:
     app: mysql
 spec:
   type: ClusterIP
-  ports:
-    - port: 3306  
-    # add name?
   selector:
     app: mysql
+  ports:
+    - port: 3306
+      name: mysql
 
 ---
 apiVersion: v1
 kind: Secret
 metadata:
   name: mysql-secret
-  labels:
-    app: mysql
 # type indicates that the structure of the secret's key names and values
 # Opaque mens that from Kubernetes point of vies the contents of this Secret \
 # is unstructured, it can contain arbitrary key-value pairs
 type: Opaque
 stringData:
   DB_NAME: wordpress
-  DB_USER: mysql-wordpress
+  DB_USER: mysql      # waar komt deze usernaam vandaan?
   DB_PASSWORD: strawberry
-  DB_HOST: mysql-svc
-  MYSQL_HOME: /etc/     # nodig?
+  DB_HOST: mysql-service
+  MYSQL_HOME: /etc/
 
 ---
 apiVersion: v1
