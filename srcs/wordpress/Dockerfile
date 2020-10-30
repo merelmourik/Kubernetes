@@ -1,3 +1,6 @@
+# er gaat iets niet goed met de keys van nginx dus eerst dat fixen en snappen
+
+
 # building from Alpine Linux
 FROM alpine:3.12
 

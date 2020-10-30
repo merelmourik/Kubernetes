@@ -20,7 +20,7 @@ RUN chown -R www:www /var/lib/nginx && \
 
 # maakt nieuwe key aan en zet hem in de goede map
 # ssl certifacate for openssl
-# RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '' -keyout /etc/ssl/nginx.key -out /etc/ssl/nginx.cert
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '' -keyout /etc/ssl/nginx.key -out /etc/ssl/nginx.cert
 # nodig?
 
 # copying the nginx configuration file and the index page to the container
