@@ -13,11 +13,11 @@ spec:
   template:
     metadata:
       labels:
-        app: mysql
+        app: mysql 
     spec:
       containers:
       - name: mysql
-        image: mymysql
+        image: mysql
         imagePullPolicy: Never
         envFrom:
         - secretRef:
