@@ -15,7 +15,7 @@ spec:
     spec: 
       containers:
         - name : nginx
-          image: mynginx
+          image: mynginx        # rename
           imagePullPolicy: Never
           ports:
           - containerPort: 80

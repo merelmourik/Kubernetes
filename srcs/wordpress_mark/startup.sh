@@ -12,10 +12,10 @@ URL=$(curl --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET $
 cd www/
 wp config create --dbname=wordpress --dbuser=mysql --dbpass=mysql --dbhost=mysql
 wp db create
-wp core install --url=${URL}:5050 --title=Wordpress --admin_user=mmourik --admin_password=strawberry --admin_email=merelmourik@gmail.com --skip-email
-wp user create Helen helen@example.com --user_pass=helen123 --role=subscriber
-wp user create Hary hary@example.com --user_pass=hary123 --role=subscriber
-wp user create Hank hank@example.com --user_pass=hank123 --role=editor
+wp core install --url=${URL}:5050 --title=Wordpress --admin_user=mmourik --admin_password=strawberry --admin_email=mpeerdem@student.codam.nl --skip-email
+wp user create user1 user1@example.com --user_pass=pass --role=subscriber
+wp user create user2 user2@example.com --user_pass=pass --role=subscriber
+wp user create editor1 editor1@example.com --user_pass=pass --role=editor
 
 # This will make sure the container closes if one of its components shuts down.
 while :
@@ -32,5 +32,3 @@ do
 		break
 	fi
 done
-
-# deze is nu letterlijk overgenomen!!

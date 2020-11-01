@@ -1,9 +1,3 @@
-# er gaat iets niet goed met de keys van nginx dus eerst dat fixen en snappen
-# misschien deze scertificaat/key ophalen?
-# ssl_certificate		/etc/ssl/server.cert;
-# 	ssl_certificate_key /etc/ssl/server.key;
-
-
 # building from Alpine Linux
 FROM alpine:3.12
 
@@ -43,7 +37,6 @@ WORKDIR /
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY wp-config.php /www/wp-config.php
 COPY start.sh /start.sh
-
 
 # give yourself the execute rights for the start script
 RUN chmod +x /start.sh

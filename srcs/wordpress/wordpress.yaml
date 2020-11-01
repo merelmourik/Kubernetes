@@ -71,5 +71,5 @@ metadata:
 type: Opaque
 stringData:
   WP_TITLE: wordpress
-  WP_USER: admin      
+  WP_USER: mmourik      
   WP_PASSWORD: strawberry
