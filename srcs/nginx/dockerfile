@@ -14,21 +14,25 @@ RUN mkdir /var/run/nginx && mkdir -p /www
 # adding user www for nginx
 RUN adduser -D -g 'www' www
 
+RUN chown -R root:root /etc/ssl && \
+	chmod -R 600 /etc/ssl
+
 # changing the user ID for the hierarchies rooted in the files
 RUN chown -R www:www /var/lib/nginx && \
 	chown -R www:www /www
 
 # maakt nieuwe key aan en zet hem in de goede map
 # ssl certifacate for openssl
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '' -keyout /etc/ssl/nginx.key -out /etc/ssl/nginx.cert
+# RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=NL/ST=Noord-Holland/O=Codam/CN=ft_services' -keyout /etc/ssl/nginx.key -out /etc/ssl/nginx.cert
 # nodig?
 
 # copying the nginx configuration file and the index page to the container
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY index.html /www/index.html 
-COPY nginx.cert /etc/ssl/nginx.cert
+COPY nginx.crt /etc/ssl/nginx.crt
 COPY nginx.key /etc/ssl/nginx.key
 COPY supervisor.conf /etc/ssl/supervisor.conf
+COPY sshd_config /etc/ssh/sshd_config
 
 # adding a user for the ssh and changing the password everywhere
 run adduser -h / -D merel && \

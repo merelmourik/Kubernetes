@@ -1,13 +1,10 @@
-# aanpassen naar -deployment en -service
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: nginx-deployment
   labels:
     app: nginx
 spec:
-  replicas: 1     # default so not necesarry?
   selector:
     matchLabels:
       app: nginx
@@ -18,7 +15,7 @@ spec:
     spec: 
       containers:
         - name : nginx
-          image: nginx
+          image: mynginx
           imagePullPolicy: Never
           ports:
           - containerPort: 80
@@ -32,8 +29,9 @@ spec:
 apiVersion: v1
 kind: Service 
 metadata:
-  # annotations: # nog aanvullen
-  name: nginx
+  annotations:
+    metallb.universe.tf/allow-shared-ip: shared
+  name: nginx-service
 spec:
   ports:
   - name: http
