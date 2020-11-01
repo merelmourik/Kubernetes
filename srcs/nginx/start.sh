@@ -2,7 +2,7 @@ ssh-keygen -A
 /usr/sbin/sshd
 nginx
 
-# This will make sure the container closes if one of its components shuts down.
+# making sure that the container stops whem one of his components stop
 while :
 do
 	sleep 10
