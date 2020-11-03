@@ -8,8 +8,7 @@ RUN apk update && apk upgrade && \
 	apk add openssh 
 
 # creating a folder for nginx.pid and for www
-RUN mkdir /var/run/nginx && mkdir -p /www
-# -p needed?
+RUN mkdir /var/run/nginx && mkdir /www
 
 # adding user www for nginx
 RUN adduser -D -g 'www' www
@@ -21,23 +20,18 @@ RUN chown -R root:root /etc/ssl && \
 RUN chown -R www:www /var/lib/nginx && \
 	chown -R www:www /www
 
-# maakt nieuwe key aan en zet hem in de goede map
-# ssl certifacate for openssl
-# RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=NL/ST=Noord-Holland/O=Codam/CN=ft_services' -keyout /etc/ssl/nginx.key -out /etc/ssl/nginx.cert
-# nodig?
+# creating new key and ssl certificate and putting them in the right directory
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:4096 -subj '/C=NL/ST=Noord-Holland/O=Codam/CN=kubernetes' -keyout /etc/ssl/nginx.key -out /etc/ssl/nginx.crt
 
 # copying the nginx configuration file and the index page to the container
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY index.html /www/index.html 
-COPY nginx.crt /etc/ssl/nginx.crt
-COPY nginx.key /etc/ssl/nginx.key
-COPY supervisor.conf /etc/ssl/supervisor.conf
+# COPY supervisor.conf /etc/ssl/supervisor.conf
 COPY sshd_config /etc/ssh/sshd_config
 
 # adding a user for the ssh and changing the password everywhere
-run adduser -h / -D merel && \
-	echo "mmourik:strawberry" | chpasswd
-# whyy?
+run adduser -h / -D mmourik && \
+	echo "mmourik:strawberry" | chpasswd		
 
 # copy the startup.sh to the container
 COPY start.sh /start.sh
