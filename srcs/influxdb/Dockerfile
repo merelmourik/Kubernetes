@@ -1,0 +1,18 @@
+# InfluxDB is an open-source time series database (TSDB). It is optimized for fast, 
+# high-availability storage and retrieval of time series data. 
+
+# Here it is used as link between mysql and grafana
+		# correct??
+
+# building from Alpine Linux
+FROM alpine:latest
+
+# update the apk package manager and install influxdb
+RUN apk update && apk upgrade && \
+	apk add influxdb
+
+# 8086 is the default port for influxdb, so expose that port
+EXPOSE 8086
+
+# give the command to start the container
+CMD influxd run
