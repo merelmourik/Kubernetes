@@ -30,12 +30,12 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 WORKDIR	/www
 RUN wp core download
 
-# set the workdir back
+# # set the workdir back
 WORKDIR /
 
 # copying the configurations and the start script
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY wp-config.php /www/wp-config.php
+# COPY wp-config.php /www/wp-config.php
 COPY start.sh /start.sh
 
 # give yourself the execute rights for the start script

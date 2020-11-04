@@ -5,6 +5,7 @@ metadata:
   labels:
     app: ftps
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: ftps
@@ -22,13 +23,9 @@ spec:
         - containerPort: 20
           name: ftp-data
         - containerPort: 21
-          name: ftp-control
-        - containerPort: 10000
-          name: passive-1
-        - containerPort: 10001
-          name: passive-2
-        - containerPort: 10002
-          name: passive-3
+          name: ftp-command
+        - containerPort: 30000
+          name: passive-port
 
 ---
 apiVersion: v1
@@ -43,22 +40,14 @@ spec:
     port: 20
     protocol: TCP
     targetPort: 20
-  - name: ftp-control
+  - name: ftp-command
     port: 21
     protocol: TCP
     targetPort: 21
-  - name: passive-1
-    port: 10000
+  - name: passive-port
+    port: 30000
     protocol: TCP
-    targetPort: 10000
-  - name: passive-2
-    port: 10001
-    protocol: TCP
-    targetPort: 10001
-  - name: passive-3
-    port: 10002
-    protocol: TCP
-    targetPort: 10002
+    targetPort: 30000
   selector:
     app: ftps
   type: LoadBalancer
