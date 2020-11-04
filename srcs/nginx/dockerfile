@@ -42,5 +42,5 @@ RUN chmod +x ./start.sh
 # expose the correct ports
 EXPOSE 22 80 443
 
-# give the command to start the conatainer
+# give the command to start the container
 CMD ./start.sh

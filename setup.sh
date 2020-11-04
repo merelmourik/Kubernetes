@@ -25,10 +25,10 @@ docker build -t nginx ./srcs/nginx
 kubectl apply -f ./srcs/nginx/nginx.yaml
 
 # building my ftps image and deploying the container
-# docker build -t ftps ./srcs/ftps
-# kubectl apply -f ./srcs/ftps/ftps.yaml
+docker build -t ftps ./srcs/ftps
+kubectl apply -f ./srcs/ftps/ftps.yaml
 
-# # building my mysql image and deploying the container
+# building my mysql image and deploying the container
 docker build -t mysql ./srcs/mysql
 kubectl apply -f ./srcs/mysql/mysql.yaml
 
@@ -36,8 +36,14 @@ kubectl apply -f ./srcs/mysql/mysql.yaml
 docker build -t wordpress ./srcs/wordpress
 kubectl apply -f ./srcs/wordpress/wordpress.yaml
 
+# building my phpmyadmin image and deploying the container
+docker build -t phpmyadmin ./srcs/phpmyadmin
+kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
 
-# # building my phpmyadmin image and deploying the container
-# docker build -t phpmyadmin ./srcs/phpmyadmin
-# kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
+# building my influxdb image and deploying the container
+docker build -t influxdb ./srcs/influxdb
+kubectl apply -f ./srcs/influxdb/influxdb.yaml
 
+# building my telegraf image and deploying the container
+docker build -t telegraf ./srcs/telegraf
+kubectl apply -f ./srcs/telegraf/telegraf.yaml
