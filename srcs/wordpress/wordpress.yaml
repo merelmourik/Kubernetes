@@ -15,13 +15,11 @@ spec:
         app: wordpress
         tier: frontend
     spec:
+      serviceAccount: mmourik
       containers:
       - name: wordpress
         image: wordpress
         imagePullPolicy: Never
-        envFrom:
-        - secretRef:
-            name: wordpress-secret
         ports:
         - containerPort: 5050
           name: http
@@ -45,71 +43,3 @@ spec:
     app: wordpress
     tier: frontend
   type: LoadBalancer
-
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: wp-pv-claim
-  labels:
-    app: wordpress
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-  
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: wordpress-secret
-type: Opaque
-stringData:
-  WP_TITLE: wordpress
-  WP_USER: mmourik      
-  WP_PASSWORD: strawberry
-
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: wordpress-deployment
-#   labels:
-#     app: wordpress
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: wordpress
-#   template:
-#     metadata:
-#       labels:
-#         app: wordpress
-#     spec:
-#       serviceAccount: mmourik
-#       containers:
-#       - name: wordpress
-#         image: wordpress
-#         imagePullPolicy: Never
-#         ports:
-#         - containerPort: 5050
-#           name: http
-
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   annotations:
-#     metallb.universe.tf/allow-shared-ip: shared
-#   name: wordpress-service
-# spec:
-#   ports:
-#   - name: http
-#     port: 5050
-#     protocol: TCP
-#     targetPort: 5050
-#   selector:
-#     app: wordpress
-#   type: LoadBalancer

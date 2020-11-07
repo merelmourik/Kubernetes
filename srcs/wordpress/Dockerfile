@@ -3,14 +3,13 @@ FROM alpine:3.12
 
 # update the packagelist and install necessary packages
 RUN apk update && \
-	apk add nginx sudo mysql-client jq curl && \
-   	apk add php7 php7-fpm php7-opcache php7-common php7-curl php7-json \
-			php7-mbstring php7-xml php7-zip php7-gd php7-soap php7-tokenizer \
-			php7-dom php7-exif php7-fileinfo php7-mysqli php7-zlib php7-phar
+	apk add nginx mysql-client wget php7 php7-json php7-fpm \
+			php7-session php7-mysqli php7-mbstring php7-phar \
+			jq curl
 
-# creating a folder for nginx.pid, a folder for the user
+# creating a folder for nginx.pid and a folder for the user
 RUN mkdir /var/run/nginx && \
-	mkdir -p /www
+	mkdir /www
 
 # adding user www for nginx 
 RUN adduser -D -g 'www' www
@@ -35,11 +34,12 @@ WORKDIR /
 
 # copying the configurations and the start script
 COPY nginx.conf /etc/nginx/nginx.conf
-# COPY wp-config.php /www/wp-config.php
 COPY start.sh /start.sh
+COPY wp-config.php	/www/wp-config.php
 
-# give yourself the execute rights for the start script
+# give yourself the execute rights for the start and wp-config script
 RUN chmod +x /start.sh
+RUN chmod +x /www/wp-config.php
 
 # expose the correct port
 EXPOSE 5050
