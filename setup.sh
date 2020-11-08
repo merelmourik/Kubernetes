@@ -24,8 +24,8 @@ docker build -t nginx ./srcs/nginx
 kubectl apply -f ./srcs/nginx/nginx.yaml
 
 # building my phpmyadmin image and deploying the container
-docker build -t phpmyadmin ./srcs/phpmyadmin_r
-kubectl apply -f ./srcs/phpmyadmin_r/phpmyadmin.yaml
+docker build -t phpmyadmin ./srcs/phpmyadmin
+kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
 
 
 # # building my ftps image and deploying the container

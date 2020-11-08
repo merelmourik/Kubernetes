@@ -1,4 +1,7 @@
 # the first should be random, second/wordpress third /phpmyadmin
+# firs service then the rest
+# kubectl exec nginx-deployment-6d76bdc8c4-wpdhz -it -- sh
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
