@@ -16,7 +16,8 @@ RUN adduser -h /ftps/mmourik -D mmourik && \
 	echo "mmourik:strawberry" | chpasswd
 
 # creating new key and ssl certificate and putting them in the right directory
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:4096 -subj '/C=NL/ST=Amsterdam/O=Codam/CN=Kubernetes' -keyout /etc/ssl/ftps.key -out /etc/ssl/ftps.crt
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:4096 -subj '/C=NL/ST=Amsterdam/O=Codam/CN=Kubernetes' \
+	-keyout /etc/ssl/ftps.key -out /etc/ssl/ftps.crt
 
 # copying the vsftpd configuration file and the start script to the corerct directory
 COPY vsftpd.conf /etc/vsftpd/vsftpd.conf

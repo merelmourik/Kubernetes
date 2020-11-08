@@ -20,9 +20,9 @@ eval $(minikube docker-env)
 kubectl create serviceaccount mmourik			# waar is dit voor nodig? mysql?
 kubectl apply -f srcs/service_account.yaml
 
-# # building my nginx image and deploying the container
-# docker build -t nginx ./srcs/nginx
-# kubectl apply -f ./srcs/nginx/nginx.yaml
+# building my nginx image and deploying the container
+docker build -t nginx ./srcs/nginx
+kubectl apply -f ./srcs/nginx/nginx.yaml
 
 # # building my ftps image and deploying the container
 # docker build -t ftps ./srcs/ftps
@@ -36,9 +36,9 @@ kubectl apply -f ./srcs/mysql/mysql.yaml
 docker build -t wordpress ./srcs/wordpress
 kubectl apply -f ./srcs/wordpress/wordpress.yaml
 
-# # building my phpmyadmin image and deploying the container
-# docker build -t phpmyadmin ./srcs/phpmyadmin
-# kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
+# building my phpmyadmin image and deploying the container
+docker build -t phpmyadmin ./srcs/phpmyadmin
+kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
 
 # # building my influxdb image and deploying the container
 # docker build -t influxdb ./srcs/influxdb
