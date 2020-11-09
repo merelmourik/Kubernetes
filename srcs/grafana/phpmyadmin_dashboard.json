@@ -104,7 +104,7 @@
             {
               "key": "container_name",
               "operator": "=",
-              "value": "phpmyadmin"
+              "value": "Phpmyadmin"
             }
           ]
         }

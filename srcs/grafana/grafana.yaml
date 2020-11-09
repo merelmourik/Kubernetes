@@ -14,13 +14,14 @@ spec:
       labels:
         app: grafana
     spec:
+      serviceAccount: mmourik
       containers:
       - name: grafana
-        image: mygrafana
+        image: grafana
         imagePullPolicy: Never
         ports:
         - containerPort: 3000
-          name: http
+          name: grafana
 ---
 apiVersion: v1
 kind: Service
@@ -30,7 +31,7 @@ metadata:
   name: grafana
 spec:
   ports:
-  - name: http
+  - name: grafana
     port: 3000
     protocol: TCP
     targetPort: 3000

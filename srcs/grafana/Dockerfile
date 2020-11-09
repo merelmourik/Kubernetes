@@ -1,37 +1,22 @@
-# grafana is a open source analytics & monitoring solution for every database, 
-# in this case
+# Grafana is a open source analytics & monitoring solution for every database.
 
-# We need to build from Alpine Linux.
-FROM alpine:latest
+# building from Alpine Linux
+FROM alpine:3.12
 
-# Download libc6-compat for Grafana.
+# updating the packagelist and installing the necessary packages
 RUN apk update && \
-	apk add libc6-compat
+	apk add vim wget curl libc6-compat
 
-# Install Grafana.
-RUN wget https://dl.grafana.com/oss/release/grafana-7.2.0.linux-amd64.tar.gz && \
-	tar -zxvf grafana-7.2.0.linux-amd64.tar.gz
+# download and unpack grafana
+RUN wget https://dl.grafana.com/oss/release/grafana-7.2.0.linux-amd64.tar.gz
+RUN tar -zxvf grafana-7.2.0.linux-amd64.tar.gz
 
-# Copy the datasource config.
-COPY datasource.yaml /grafana-7.2.0/conf/provisioning/datasources/datasource.yaml
+# copy grafana.db to the correct location
+COPY ./grafana.db ./grafana-7.2.0/data/grafana.db
 
-# Copy the dashboards.
-COPY nginx_dashboard.json /grafana-7.2.0/conf/provisioning/dashboards/nginx_dashboard.json
-COPY ftps_dashboard.json /grafana-7.2.0/conf/provisioning/dashboards/ftps_dashboard.json
-COPY mysql_dashboard.json /grafana-7.2.0/conf/provisioning/dashboards/mysql_dashboard.json
-COPY wordpress_dashboard.json /grafana-7.2.0/conf/provisioning/dashboards/wordpress_dashboard.json
-COPY phpmyadmin_dashboard.json /grafana-7.2.0/conf/provisioning/dashboards/phpmyadmin_dashboard.json
-COPY influxdb_dashboard.json /grafana-7.2.0/conf/provisioning/dashboards/influxdb_dashboard.json
-COPY grafana_dashboard.json /grafana-7.2.0/conf/provisioning/dashboards/grafana_dashboard.json
-
-# Copy the config file so Grafana recognizes the dashboard.
-COPY default.yaml /grafana-7.2.0/conf/provisioning/dashboards/default.yaml
-
-# Copy the grafana.db file, to allow us to log in as Mark.
-COPY grafana.db /grafana-7.2.0/data/grafana.db
-
-# Expose port 3000.
+# Open port
 EXPOSE 3000
 
-# Keep the container running.
-CMD cd grafana-7.2.0 && ./bin/grafana-server
+# going to the correct workdirectory and start the grafana server
+WORKDIR grafana-7.2.0
+CMD ./bin/grafana-server

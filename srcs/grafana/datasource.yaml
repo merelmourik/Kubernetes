@@ -1,11 +1,11 @@
 apiVersion: 1
 
 datasources:
-- name: InfluxDB
-  type: influxdb
-  access: proxy
-  url: http://influxdb:8086
-  password: telegraf
-  user: telegraf
-  database: telegraf
-  isDefault: true
+  - name: graf-influx
+    type: influxdb
+    access: proxy
+    database: site
+    user: admin
+    url: http://influxdb:8086
+    secureJsonData:
+      password: admin
