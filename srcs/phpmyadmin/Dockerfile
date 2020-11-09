@@ -7,11 +7,7 @@ RUN apk update && apk upgrade && \
 	php7-mbstring php7-json php7-session php7-zip && \
 	apk add nginx
 
-# creating a folder for nginx.pid, a temporarily folder for confic.inc.php
-# and a folder for the user
-# RUN mkdir -p /var/run/nginx && \
-# 	mkdir -p /www && \
-# 	mkdir -p /www/tmp
+# creating the necesarry folders
 RUN mkdir -p /run/nginx && \
 	mkdir -p /www && \
 	mkdir -p /www/tmp && \
@@ -33,8 +29,7 @@ RUN chown -R www:www /var/lib/nginx && \
 	chown -R www:www /www/tmp && \
 	chown -R www:www /www/phpmyadmin/tmp
 
-# copying the nginx conf file and the php config files to the correct directories
-# and copying the start.sh file
+# copying the configuration files and the start file to the correct directories
 COPY nginx.conf etc/nginx/nginx.conf
 COPY start.sh /start.sh
 COPY config.inc.php /www/config.inc.php

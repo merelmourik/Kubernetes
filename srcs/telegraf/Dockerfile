@@ -10,8 +10,8 @@ RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.13.3-static_linu
 # putting the configuration file in the correct directory
 COPY telegraf.conf /etc/telegraf/telegraf.conf
 
-# Expose port 8125.
+# exposing port 8125
 EXPOSE 8125
 
-# Keep the container running.
+# make sure that the container keeps running
 CMD telegraf
