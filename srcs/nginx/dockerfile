@@ -1,3 +1,7 @@
+# NGINX is a open source HTTP web server, mail proxy server, and reverse proxy and 
+# load balancer for HTTP, TCP, and UDP traffic. NGINX is known for its high performance, 
+# stability, rich feature set, simple configuration, and low resource consumption.
+
 # building from Alpine Linux
 FROM alpine:3.12
 
@@ -12,9 +16,6 @@ RUN mkdir /var/run/nginx && mkdir /www
 
 # adding user www for nginx
 RUN adduser -D -g 'www' www
-
-# RUN chown -R root:root /etc/ssl && \
-# 	chmod -R 600 /etc/ssl
 
 # changing the user ID for the hierarchies rooted in the files
 RUN chown -R www:www /var/lib/nginx && \

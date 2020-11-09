@@ -1,3 +1,8 @@
+# MySQL Database Service is a fully managed database service to deploy 
+# cloud-native applications using the world’s most popular open source database. 
+# SQL is the language used to create, modify and extract data from the relational 
+# database, as well as control user access to the database.
+
 # building from Alpine Linux
 FROM alpine:3.12
 

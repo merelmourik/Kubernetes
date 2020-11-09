@@ -1,7 +1,11 @@
+# FTPS is the same as FTP but it uses SSL to protect the FTP. 
+# FTP is used for file exchange between computers. One computer 
+# is the FTP server and the other one is the client.
+
 # building from Alpine Linux
 FROM alpine:3.12
 
-# update the packagelist and install necessary packages
+# updating the packagelist and installing the necessary packages
 RUN apk update && \
 	apk add vsftpd && \
 	apk add openssl && \

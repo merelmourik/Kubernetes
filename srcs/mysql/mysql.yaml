@@ -19,11 +19,9 @@ spec:
       - name: mysql
         image: mysql
         imagePullPolicy: Never
-        envFrom:
         ports:
         - containerPort: 3306
           name: mysql
-        env:
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql

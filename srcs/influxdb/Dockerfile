@@ -1,9 +1,6 @@
 # InfluxDB is an open-source time series database (TSDB). It is optimized for fast, 
 # high-availability storage and retrieval of time series data. 
 
-# Here it is used as link between mysql and grafana
-		# correct??
-
 # building from Alpine Linux
 FROM alpine:latest
 
