@@ -31,13 +31,14 @@ spec:
           claimName: influxdb-pv-claim
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
   name: influxdb-service
 spec:
   ports:
-  - name: inf
+  - name: influxdb
     port: 8086
     protocol: TCP
     targetPort: 8086

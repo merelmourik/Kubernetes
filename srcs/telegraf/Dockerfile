@@ -1,5 +1,5 @@
 # building from Alpine Linux
-FROM alpine:latest
+FROM alpine:3.12
 
 # downloading and installing telegraf
 RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.13.3-static_linux_amd64.tar.gz && \

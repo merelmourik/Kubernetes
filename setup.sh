@@ -49,3 +49,8 @@ kubectl apply -f ./srcs/telegraf/telegraf.yaml
 # building my grafana image and deploying the container
 docker build -t grafana ./srcs/grafana
 kubectl apply -f ./srcs/grafana/grafana.yaml
+
+# service		user		password	db_name		hostname	db_charset
+# Grafana:		admin		admin
+# phpMyAdmin:	mysql		mysql
+# Wordpress:	mysql		mysql		wordpress	mysql		utf8

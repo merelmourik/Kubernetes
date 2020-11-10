@@ -10,10 +10,12 @@ $i = 1;
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 
 // server parameters
-$cfg['Servers'][$i]['host'] = '${DB_HOST}';
+$cfg['Servers'][$i]['host'] = 'mysql';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = true;
 $cfg['Servers'][$i]['port'] = '3306';
+$cfg['Servers'][$i]['user'] = 'mysql';
+$cfg['Servers'][$i]['password'] = 'mysql';
 
 // directories for saving/loading files from server
 $cfg['UploadDir'] = '';

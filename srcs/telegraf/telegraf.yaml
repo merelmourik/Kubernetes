@@ -13,7 +13,7 @@ spec:
       labels:
         app: telegraf
     spec:
-      serviceAccount: mark
+      serviceAccount: mmourik
       containers:
       - name: telegraf
         image: telegraf
