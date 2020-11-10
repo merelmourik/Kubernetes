@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: influxdb-deployment
+  name: influxdb-service
   labels:
     app: influxdb
 spec:
@@ -19,27 +19,29 @@ spec:
       - name: influxdb
         image: influxdb
         imagePullPolicy: Never
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
         ports:
         - containerPort: 8086
-          name: inf
+          name: influxdb
         volumeMounts:
         - name: influxdb-persistent-storage
-          mountPath: /root
+          mountPath: /var/lib/influxdb
       volumes:
       - name: influxdb-persistent-storage
         persistentVolumeClaim:
           claimName: influxdb-pv-claim
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: influxdb-service
+  name: influxdb
 spec:
   ports:
-  - name: influxdb
-    port: 8086
+  - port: 8086
+    name: influxdb
     protocol: TCP
     targetPort: 8086
   selector:
@@ -52,25 +54,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: influxdb-pv-claim
 spec:
-  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: influx-pv-volume
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 1Gi
-  accessModes:
-  - ReadWriteOnce
-  hostPath:
-    path: "/root"
