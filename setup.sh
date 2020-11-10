@@ -18,25 +18,25 @@ eval $(minikube docker-env)
 kubectl create serviceaccount mmourik	
 kubectl apply -f srcs/service_account.yaml
 
-# building my nginx image and deploying the container
-docker build -t nginx ./srcs/nginx
-kubectl apply -f ./srcs/nginx/nginx.yaml
-
 # building my phpmyadmin image and deploying the container
 docker build -t phpmyadmin ./srcs/phpmyadmin
 kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
 
-# # building my ftps image and deploying the container
-# docker build -t ftps ./srcs/ftps
-# kubectl apply -f ./srcs/ftps/ftps.yaml
+# building my nginx image and deploying the container
+docker build -t nginx ./srcs/nginx
+kubectl apply -f ./srcs/nginx/nginx.yaml
 
-# # building my mysql image and deploying the container
-# docker build -t mysql ./srcs/mysql
-# kubectl apply -f ./srcs/mysql/mysql.yaml
+# building my ftps image and deploying the container
+docker build -t ftps ./srcs/ftps
+kubectl apply -f ./srcs/ftps/ftps.yaml
 
-# # building my wordpress image and deploying the container
-# docker build -t wordpress ./srcs/wordpress
-# kubectl apply -f ./srcs/wordpress/wordpress.yaml
+# building my mysql image and deploying the container
+docker build -t mysql ./srcs/mysql
+kubectl apply -f ./srcs/mysql/mysql.yaml
+
+# building my wordpress image and deploying the container
+docker build -t wordpress ./srcs/wordpress
+kubectl apply -f ./srcs/wordpress/wordpress.yaml
 
 # building my influxdb image and deploying the container
 docker build -t influxdb ./srcs/influxdb
