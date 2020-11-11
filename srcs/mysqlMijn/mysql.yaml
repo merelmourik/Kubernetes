@@ -5,7 +5,6 @@ metadata:
   labels:
     app: mysql
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: mysql
@@ -14,15 +13,12 @@ spec:
   template:
     metadata:
       labels:
-        app: mysql
+        app: mysql 
     spec:
       containers:
       - name: mysql
         image: mysql
         imagePullPolicy: Never
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: password
         ports:
         - containerPort: 3306
           name: mysql
@@ -33,7 +29,7 @@ spec:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
-
+          
 ---
 apiVersion: v1
 kind: Service
@@ -48,7 +44,7 @@ spec:
   selector:
     app: mysql
   type: ClusterIP
-
+  
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

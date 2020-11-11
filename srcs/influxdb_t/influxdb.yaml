@@ -1,59 +1,59 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql-deployment
+  name: influxdb
   labels:
-    app: mysql
+    app: influxdb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: influxdb
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mysql
+        app: influxdb
     spec:
       containers:
-      - name: mysql
-        image: mysql
+      - name: influxdb
+        image: influxdb
         imagePullPolicy: Never
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: password
         ports:
-        - containerPort: 3306
-          name: mysql
+        - containerPort: 8086
+          name: influxdb
         volumeMounts:
-        - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
+        - name: influxdb-persistent-storage
+          mountPath: /var/lib/influxdb
       volumes:
-      - name: mysql-persistent-storage
+      - name: influxdb-persistent-storage
         persistentVolumeClaim:
-          claimName: mysql-pv-claim
-
+          claimName: influxdb-pv-claim
+          
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-service
+  name: influxdb
 spec:
   ports:
-  - port: 3306
-    name: mysql
+  - port: 8086
+    name: influxdb
     protocol: TCP
-    targetPort: 3306
+    targetPort: 8086
   selector:
-    app: mysql
+    app: influxdb
   type: ClusterIP
 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pv-claim
+  name: influxdb-pv-claim
 spec:
   accessModes:
     - ReadWriteOnce

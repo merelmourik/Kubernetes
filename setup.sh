@@ -39,8 +39,8 @@ docker build -t wordpress ./srcs/wordpress
 kubectl apply -f ./srcs/wordpress/wordpress.yaml
 
 # building my influxdb image and deploying the container
-docker build -t influxdb ./srcs/influxdb
-kubectl apply -f ./srcs/influxdb/influxdb.yaml
+docker build -t influxdb ./srcs/influxdb_t
+kubectl apply -f ./srcs/influxdb_t/influxdb.yaml
 
 # building my telegraf image and deploying the container
 docker build -t telegraf ./srcs/telegraf

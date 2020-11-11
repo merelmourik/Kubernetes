@@ -25,5 +25,3 @@ EXPOSE 3306
 
 # executing so it keeps running
 CMD ./start.sh
-
-# WORKS
