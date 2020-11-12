@@ -23,7 +23,7 @@ RUN chmod +x getip.sh
 #CMD /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
 
 # Open ports
-EXPOSE 20 21 10003 10004 10005
+EXPOSE 20 21 21000 21001 21002 21003 21004 21005 21006 21007 21008 21009
 
 # Run script to get the right IP address
 CMD ./getip.sh
