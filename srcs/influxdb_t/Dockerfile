@@ -6,7 +6,7 @@ FROM alpine:3.12
 
 # update the apk package manager and install influxdb
 RUN apk update && \
-	apk add vim nfluxdb wget curl
+	apk add vim influxdb wget curl
 
 # 8086 is the default port for influxdb, so expose that port
 EXPOSE 8086
