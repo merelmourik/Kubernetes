@@ -1,13 +1,15 @@
-FROM alpine:latest
- 
-RUN apk update && \
-	apk add vim \
-			influxdb \
-			wget \
-			curl
+# InfluxDB is an open-source time series database (TSDB). It is optimized for fast, 
+# high-availability storage and retrieval of time series data. It works with Grafana.
 
-# expose default port 8086
+# building from Alpine Linux
+FROM alpine:3.12
+
+# update the apk package manager and install influxdb
+RUN apk update && \
+	apk add vim nfluxdb wget curl
+
+# 8086 is the default port for influxdb, so expose that port
 EXPOSE 8086
 
-#CMD ./startup.sh
+# give the command to start the container
 CMD influxd run
