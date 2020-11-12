@@ -8,9 +8,9 @@ RUN apk update && \
 	apk add curl
 
 # Make user with home dir and password
-RUN mkdir -p ftps/rixt
-RUN adduser -h /ftps/rixt -D rixt
-RUN echo "rixt:secret" | chpasswd
+RUN mkdir -p ftps/mmourik
+RUN adduser -h /ftps/mmourik -D mmourik
+RUN echo "mmourik:strawberry" | chpasswd
 
 RUN openssl req -x509 -nodes -days 365 -subj \
 	"/C=NL/ST=Noord-Holland/O=Codam/CN=localhost.com" -newkey rsa:2048 -keyout \
