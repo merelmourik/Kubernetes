@@ -28,11 +28,9 @@ COPY vsftpd.conf /etc/vsftpd/vsftpd.conf
 COPY start.sh /start.sh
 
 # exposing port 20 for the data and 21 for the command(control)
-EXPOSE 20 21 
-
-# exposing a passive port; passive ports are used to solve the problem of firewalls filtering
-# the incoming data port connection to the client from the server
-EXPOSE 30000
+# exposing the passive ports; passive ports are used to solve the problem of firewalls 
+# filtering the incoming data port connection to the client from the server
+EXPOSE 20 21 20001 20002 20003 20004 20005 
 
 # giving the script the right rights
 RUN chmod +x /start.sh

@@ -23,8 +23,16 @@ spec:
           name: ftp-data
         - containerPort: 21
           name: ftp-command
-        - containerPort: 30000
-          name: passive-port
+        - containerPort: 20001
+          name: passive-one
+        - containerPort: 20002
+          name: passive-two
+        - containerPort: 20003
+          name: passive-three
+        - containerPort: 20004
+          name: passive-four
+        - containerPort: 20005
+          name: passive-five
 
 ---
 apiVersion: v1
@@ -43,10 +51,26 @@ spec:
     port: 21
     protocol: TCP
     targetPort: 21
-  - name: passive-port
-    port: 30000
+  - name: passive-one
+    port: 20001
     protocol: TCP
-    targetPort: 30000
+    targetPort: 20001
+  - name: passive-two
+    port: 20002
+    protocol: TCP
+    targetPort: 20002    
+  - name: passive-three
+    port: 20003
+    protocol: TCP
+    targetPort: 20003
+  - name: passive-four
+    port: 20004
+    protocol: TCP
+    targetPort: 20004
+  - name: passive-five
+    port: 20005
+    protocol: TCP
+    targetPort: 20005
   selector:
     app: ftps
   type: LoadBalancer

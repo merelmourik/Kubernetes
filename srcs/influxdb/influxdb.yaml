@@ -1,10 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: influxdb-deployment
+  name: influxdb
   labels:
     app: influxdb
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: influxdb
@@ -32,12 +33,12 @@ spec:
       - name: influxdb-persistent-storage
         persistentVolumeClaim:
           claimName: influxdb-pv-claim
-
+          
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: influxdb-service
+  name: influxdb
 spec:
   ports:
   - port: 8086
