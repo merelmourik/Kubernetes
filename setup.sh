@@ -34,29 +34,29 @@ kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
 docker build -t nginx ./srcs/nginx
 kubectl apply -f ./srcs/nginx/nginx.yaml
 
-# # building my ftps image and deploying the container
-# docker build -t ftps ./srcs/ftps
-# kubectl apply -f ./srcs/ftps/ftps.yaml
+# building my ftps image and deploying the container
+docker build -t ftps ./srcs/ftps
+kubectl apply -f ./srcs/ftps/ftps.yaml
 
 # building my mysql image and deploying the container
 docker build -t mysql ./srcs/mysql
 kubectl apply -f ./srcs/mysql/mysql.yaml
 
-# # building my wordpress image and deploying the container
-# docker build -t wordpress ./srcs/wordpress
-# kubectl apply -f ./srcs/wordpress/wordpress.yaml
+# building my wordpress image and deploying the container
+docker build -t wordpress ./srcs/wordpress
+kubectl apply -f ./srcs/wordpress/wordpress.yaml
 
-# # building my influxdb image and deploying the container
-# docker build -t influxdb ./srcs/influxdb
-# kubectl apply -f ./srcs/influxdb/influxdb.yaml
+# building my influxdb image and deploying the container
+docker build -t influxdb ./srcs/influxdb
+kubectl apply -f ./srcs/influxdb/influxdb.yaml
 
-# # building my telegraf image and deploying the container
-# docker build -t telegraf ./srcs/telegraf
-# kubectl apply -f ./srcs/telegraf/telegraf.yaml
+# building my telegraf image and deploying the container
+docker build -t telegraf ./srcs/telegraf
+kubectl apply -f ./srcs/telegraf/telegraf.yaml
 
-# # building my grafana image and deploying the container
-# docker build -t grafana ./srcs/grafana
-# kubectl apply -f ./srcs/grafana/grafana.yaml
+# building my grafana image and deploying the container
+docker build -t grafana ./srcs/grafana
+kubectl apply -f ./srcs/grafana/grafana.yaml
 
 # service		user		password	db_name		hostname	db_charset
 # Grafana:		admin		admin
