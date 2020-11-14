@@ -26,6 +26,7 @@ RUN adduser -D -g 'www' www
 
 # changing the user ID for the hierarchies rooted in the files
 RUN chmod 777 /www/tmp && \
+	chmod 777 /www/phpmyadmin/tmp && \
 	chown -R www:www /var/lib/nginx && \		
 	chown -R www:www /www/tmp && \
 	chown -R www:www /www/phpmyadmin/tmp

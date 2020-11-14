@@ -64,3 +64,6 @@ kubectl apply -f ./srcs/grafana/grafana.yaml
 # Wordpress:	mysql		mysql		wordpress	mysql		utf8
 # SSH: 			int the terminal "ssh mmourik@192.168.99.220 -p 22"
 				# password: strawberry
+
+# to enter a container:
+# kubectl exec pod_deployment -it -- sh
