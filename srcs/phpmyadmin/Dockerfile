@@ -12,10 +12,9 @@ RUN apk update && apk upgrade && \
 
 # creating the necesarry folders
 RUN mkdir -p /run/nginx && \
-	mkdir -p /www && \
 	mkdir -p /www/tmp && \
-	mkdir -p /www/phpmyadmin && \
 	mkdir -p /www/phpmyadmin/tmp
+	# deleted some folders here
 
 # downloading and unpacking PHPMyAdmin
 RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.1/phpMyAdmin-5.0.1-english.tar.gz && \
