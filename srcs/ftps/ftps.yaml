@@ -1,10 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ftps-deployment
+  name: ftps
   labels:
     app: ftps
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: ftps
@@ -22,55 +23,42 @@ spec:
         - containerPort: 20
           name: ftp-data
         - containerPort: 21
-          name: ftp-command
-        - containerPort: 20001
-          name: passive-one
-        - containerPort: 20002
-          name: passive-two
-        - containerPort: 20003
-          name: passive-three
-        - containerPort: 20004
-          name: passive-four
-        - containerPort: 20005
-          name: passive-five
-
+          name: ftps
+        - containerPort: 10003
+          name: drie
+        - containerPort: 10004
+          name: vier
+        - containerPort: 10005
+          name: vijf
 ---
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
-  name: ftps-service
+  name: ftps
 spec:
-  ports:
+  ports:  
   - name: ftp-data
     port: 20
     protocol: TCP
-    targetPort: 20
-  - name: ftp-command
+    targetPort: 20 
+  - name: ftps
     port: 21
     protocol: TCP
     targetPort: 21
-  - name: passive-one
-    port: 20001
+  - name: drie
+    port: 10003
     protocol: TCP
-    targetPort: 20001
-  - name: passive-two
-    port: 20002
+    targetPort: 10003
+  - name: vier
+    port: 10004
     protocol: TCP
-    targetPort: 20002    
-  - name: passive-three
-    port: 20003
+    targetPort: 10004
+  - name: vijf
+    port: 10005
     protocol: TCP
-    targetPort: 20003
-  - name: passive-four
-    port: 20004
-    protocol: TCP
-    targetPort: 20004
-  - name: passive-five
-    port: 20005
-    protocol: TCP
-    targetPort: 20005
+    targetPort: 10005
   selector:
     app: ftps
   type: LoadBalancer

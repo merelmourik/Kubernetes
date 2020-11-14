@@ -26,21 +26,21 @@ eval $(minikube docker-env)
 kubectl create serviceaccount mmourik	
 kubectl apply -f srcs/service_account.yaml
 
-# # building my phpmyadmin image and deploying the container
-# docker build -t phpmyadmin ./srcs/phpmyadmin
-# kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
+# building my phpmyadmin image and deploying the container
+docker build -t phpmyadmin ./srcs/phpmyadmin
+kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
 
-# # building my nginx image and deploying the container
-# docker build -t nginx ./srcs/nginx
-# kubectl apply -f ./srcs/nginx/nginx.yaml
+# building my nginx image and deploying the container
+docker build -t nginx ./srcs/nginx
+kubectl apply -f ./srcs/nginx/nginx.yaml
 
-# building my ftps image and deploying the container
-docker build -t ftps ./srcs/ftps_tix2
-kubectl apply -f ./srcs/ftps_tix2/ftps.yaml
+# # building my ftps image and deploying the container
+# docker build -t ftps ./srcs/ftps
+# kubectl apply -f ./srcs/ftps/ftps.yaml
 
-# # building my mysql image and deploying the container
-# docker build -t mysql ./srcs/mysql
-# kubectl apply -f ./srcs/mysql/mysql.yaml
+# building my mysql image and deploying the container
+docker build -t mysql ./srcs/mysql
+kubectl apply -f ./srcs/mysql/mysql.yaml
 
 # # building my wordpress image and deploying the container
 # docker build -t wordpress ./srcs/wordpress

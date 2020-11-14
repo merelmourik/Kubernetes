@@ -21,4 +21,4 @@ $cfg['Servers'][$i]['password'] = 'mysql';
 $cfg['UploadDir'] = '';
 $cfg['SaveDir'] = '';
 $cfg['PmaAbsoluteUri'] = '/';
-$cfg['TempDir'] = './temp';
+$cfg['TempDir'] = './tmp';

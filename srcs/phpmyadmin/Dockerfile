@@ -14,7 +14,6 @@ RUN apk update && apk upgrade && \
 RUN mkdir -p /run/nginx && \
 	mkdir -p /www/tmp && \
 	mkdir -p /www/phpmyadmin/tmp
-	# deleted some folders here
 
 # downloading and unpacking PHPMyAdmin
 RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.1/phpMyAdmin-5.0.1-english.tar.gz && \
@@ -26,8 +25,8 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.1/phpMyAdmin-5.0.1-english.
 RUN adduser -D -g 'www' www
 
 # changing the user ID for the hierarchies rooted in the files
-RUN chown -R www:www /var/lib/nginx && \		
-	chown -R www:www /www && \
+RUN chmod 777 /www/tmp && \
+	chown -R www:www /var/lib/nginx && \		
 	chown -R www:www /www/tmp && \
 	chown -R www:www /www/phpmyadmin/tmp
 
