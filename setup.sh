@@ -35,8 +35,8 @@ docker build -t nginx ./srcs/nginx
 kubectl apply -f ./srcs/nginx/nginx.yaml
 
 # building my ftps image and deploying the container
-docker build -t ftps ./srcs/ftps_pt
-kubectl apply -f ./srcs/ftps_pt/ftps.yaml
+docker build -t ftps ./srcs/ftps
+kubectl apply -f ./srcs/ftps/ftps.yaml
 
 # building my mysql image and deploying the container
 docker build -t mysql ./srcs/mysql
