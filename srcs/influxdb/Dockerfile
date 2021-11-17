@@ -3,13 +3,12 @@
 
 # building from Alpine Linux
 FROM alpine:latest
+ 
+RUN apk update && \
+	apk add influxdb curl
 
-# update the apk package manager and install influxdb
-RUN apk update && apk upgrade && \
-	apk add influxdb
-
-# 8086 is the default port for influxdb, so expose that port
+# expose default port 8086
 EXPOSE 8086
 
-# give the command to start the container
+#CMD ./startup.sh
 CMD influxd run

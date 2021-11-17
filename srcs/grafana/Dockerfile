@@ -14,7 +14,7 @@ RUN tar -zxvf grafana-7.2.0.linux-amd64.tar.gz
 # copy grafana.db to the correct location
 COPY ./grafana.db ./grafana-7.2.0/data/grafana.db
 
-# Open port
+# exposing the correct port
 EXPOSE 3000
 
 # going to the correct workdirectory and start the grafana server

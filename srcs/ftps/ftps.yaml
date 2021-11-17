@@ -1,10 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ftps-deployment
+  name: ftps
   labels:
     app: ftps
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: ftps
@@ -24,19 +25,18 @@ spec:
         - containerPort: 21
           name: ftps
         - containerPort: 10003
-          name: pasv1
+          name: drie
         - containerPort: 10004
-          name: pasv2
+          name: vier
         - containerPort: 10005
-          name: pasv3
-
+          name: vijf
 ---
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
-  name: ftps-service
+  name: ftps
 spec:
   ports:  
   - name: ftp-data
@@ -47,15 +47,15 @@ spec:
     port: 21
     protocol: TCP
     targetPort: 21
-  - name: pasv1
+  - name: drie
     port: 10003
     protocol: TCP
     targetPort: 10003
-  - name: pasv2
+  - name: vier
     port: 10004
     protocol: TCP
     targetPort: 10004
-  - name: pasv3
+  - name: vijf
     port: 10005
     protocol: TCP
     targetPort: 10005

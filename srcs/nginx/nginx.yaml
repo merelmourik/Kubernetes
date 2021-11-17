@@ -1,11 +1,19 @@
-# the first should be random, second/wordpress third /phpmyadmin
-# firs service then the rest
-# kubectl exec nginx-deployment-6d76bdc8c4-wpdhz -it -- sh
+# This configuration file filters the incoming requests and redirects them.
+# A redirection is a way to sent both user and serach engines to a different
+# URL from the one they orginally requested.
+# Port 80 = HTTP = non SSL, with redirection type 301 ("Moved Permanently") to port 443.
+# Port 443 = HTTPS = with SSL, so a redirection from HTTP to HTTPS is established.
+# Error 497 is a http request to a https listener, when this happen I show a redirected website.
+# When you are in the minikube-dashboard -> nginx -> nginx-service, there are three URL's;
+# If you enter /wordpress after the first or second URL it redirects you to wordpress,
+# and if you enter /phpmyadmin after the first or second URL it redirects you to phpmyadmin
+# by using a reversed proxy.
+# The third URL is a redirection to port 22 (SSL port), which gives a 'page not found', which is fine.
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx
   labels:
     app: nginx
 spec:
@@ -35,7 +43,7 @@ kind: Service
 metadata:
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
-  name: nginx-service
+  name: nginx
 spec:
   ports:
   - name: http

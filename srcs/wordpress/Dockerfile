@@ -29,7 +29,7 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 WORKDIR	/www
 RUN wp core download
 
-# # set the workdir back
+# set the workdir back
 WORKDIR /
 
 # copying the configurations and the start script

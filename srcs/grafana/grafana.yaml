@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grafana-deployment
+  name: grafana
   labels:
     app: grafana
 spec:
@@ -28,7 +28,7 @@ kind: Service
 metadata:
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
-  name: grafana-service
+  name: grafana
 spec:
   ports:
   - name: grafana
