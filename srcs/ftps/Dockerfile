@@ -3,11 +3,11 @@
 # is the FTP server and the other one is the client.
 
 # building from Alpine Linux
-FROM alpine:latest
+FROM alpine:3.12
 
 # updating the packagelist and installing the necessary packages
 RUN apk update && \
-	apk add vsftpd && \
+	apk add --no-cache vsftpd &&\
 	apk add vim && \
 	apk add openssl && \
 	apk add jq && \

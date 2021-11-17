@@ -2,7 +2,7 @@
 # high-availability storage and retrieval of time series data. It works with Grafana.
 
 # building from Alpine Linux
-FROM alpine:latest
+FROM alpine:3.12
  
 RUN apk update && \
 	apk add influxdb curl
